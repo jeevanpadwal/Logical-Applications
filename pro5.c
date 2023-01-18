@@ -1,34 +1,41 @@
+
+// accept n number display divisible by 5 and even 
 #include<stdio.h>
+#include<stdlib.h>
 
-int FeqLessThan6(int iNo)
+void Mult(int Arr[] ,int iLength)
 {
-    int iDigit=0;
-    int iCnt=0;
-
-    while(iNo>0)
-    {
-        iDigit=iNo%10;
-
-        if(iDigit<=6)
-        {
-            iCnt++;
-        }
-        iNo=iNo/10;
-    }
-    return iCnt;
+     int iCnt=0;
+     for(iCnt=0;iCnt<iLength;iCnt++)
+     {
+         if((Arr[iCnt]%11)==0)
+         {
+             printf("%d\n",Arr[iCnt]);
+         }
+     }
 }
 
 int main()
+    {
+int iSize=0;
+int *iptr=NULL;
+int iCnt=0;
+
+printf("enter the size of elements");
+scanf("%d",&iSize);
+
+iptr=(int*)malloc(sizeof(int)*iSize);
+
+printf("enter elements");
+for(iCnt=0;iCnt<iSize;iCnt++)
 {
-    int iValue=0;
-    int iRet=0;
 
-    printf("enter the no\n");
-    scanf("%d",&iValue);
+ scanf("%d",&iptr[iCnt]);
 
-    iRet=FeqLessThan6(iValue);
-
-    printf("frequency is less than 6 is :%d\n",iRet);
-
-    return 0;
 }
+
+Mult(iptr,iSize);
+
+
+        return 0;
+    }

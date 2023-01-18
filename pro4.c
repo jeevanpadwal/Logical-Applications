@@ -1,33 +1,44 @@
 #include<stdio.h>
-int Feq4(int iNo)
+#include<stdlib.h>
+#include<stdbool.h>
+
+
+int ChkF(int Brr[], int iLength)
 {
-    int iDigit=0;
-    int iCnt=0;
+    int iCnt=0,FiCnt=0;
 
-    while(iNo>0)
+    for(iCnt=0;iCnt<iLength;iCnt++)
     {
-        iDigit=iNo%10;
-
-        if(iDigit==4)
+        if(Brr[iCnt]==11)
         {
-            iCnt++;
+            FiCnt++;
         }
-        iNo=iNo/10;
+       
     }
-    return iCnt;
+    return FiCnt;
 }
-
 int main()
 {
-    int iValue=0;
-    int iRet=0;
+    int iSize=0,iCnt=0;
+    int *iptr=NULL;
+    int iRet;
 
-    printf("enter no\n");
-    scanf("%d",&iValue);
+    printf("enter the size of elements\n");
+    scanf("%d",&iSize);
 
-    iRet=Feq4(iValue);
+    iptr=(int*)malloc(sizeof(int)*iSize);
 
-    printf("frequency of 4 is :%d\n",iRet);
+    printf("enter the elements\n");
+
+    for(iCnt=0;iCnt<iSize;iCnt++)
+    {
+        scanf("%d",&iptr[iCnt]);
+    }
+
+    iRet=ChkF(iptr,iSize);
+    
+    printf("frequency is :%d",iRet);
+    free(iptr);
 
     return 0;
 }

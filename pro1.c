@@ -1,33 +1,41 @@
-//display digit reverse order
 #include<stdio.h>
+#include<stdlib.h>
 
-void DisplayDigit(int iNo)
+int Feq(int Brr[], int iLength)
 {
-    int iDigit=0;
+    int iCnt=0,feqCnt=0;
 
-    if(iNo<=0)
+    for(iCnt=0;iCnt<iLength;iCnt++)
     {
-        iNo=-iNo;
+        if((Brr[iCnt]%2)==0)
+        {
+            feqCnt++;
+        }
     }
-    
-    while(iNo>0)
-    {
-        iDigit=iNo%10;
-
-        printf("%d\n",iDigit);
-
-        iNo=iNo/10;
-    }
+    return feqCnt;
 }
-
 int main()
 {
-    int iValue=0;
-    
-    printf("enter number\n");
-    scanf("%d",&iValue);
+    int iSize=0,iCnt=0,iRet=0;
+    int *iptr=NULL;
 
-    DisplayDigit(iValue);
+    printf("enter the size of elements\n");
+    scanf("%d",&iSize);
+
+    iptr=(int*)malloc(sizeof(int)*iSize);
+
+    printf("enter the elements\n");
+
+    for(iCnt=0;iCnt<iSize;iCnt++)
+    {
+        scanf("%d",&iptr[iCnt]);
+    }
+
+    iRet=Feq(iptr,iSize);
+
+    printf("result is :%d",iRet);
+
+    free(iptr);
 
     return 0;
 }

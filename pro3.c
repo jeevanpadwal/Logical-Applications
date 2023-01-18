@@ -1,33 +1,51 @@
 #include<stdio.h>
-int Freq2(int iNo)
-{
-    int iDigit=0;
-    int iCnt=0;
+#include<stdlib.h>
+#include<stdbool.h>
 
-    while(iNo>0)
+
+bool Chk(int Brr[], int iLength)
+{
+    int iCnt=0,FiCnt=0;
+
+    for(iCnt=0;iCnt<iLength;iCnt++)
     {
-        iDigit=iNo%10;
-        if(iDigit==2)
+        if(Brr[iCnt]==11)
         {
-            iCnt++;
+            FiCnt++;
         }
-        iNo=iNo/10;
-    
-        
+       
     }
-    return iCnt;
+    return FiCnt;
 }
 int main()
 {
-    int iValue=0;
-    int iRet=0;
+    int iSize=0,iCnt=0;
+    int *iptr=NULL;
+    bool fRet;
 
-    printf("enter the number\n");
-    scanf("%d",&iValue);
+    printf("enter the size of elements\n");
+    scanf("%d",&iSize);
 
-    iRet=Freq2(iValue);
+    iptr=(int*)malloc(sizeof(int)*iSize);
 
-    printf("%d",iRet);
+    printf("enter the elements\n");
+
+    for(iCnt=0;iCnt<iSize;iCnt++)
+    {
+        scanf("%d",&iptr[iCnt]);
+    }
+
+    fRet=Chk(iptr,iSize);
+    if(fRet==true)
+    {
+        printf("arry contain 11 ");
+    }
+    else
+    {
+        printf("arry does not contain 11");
+    }
+
+    free(iptr);
 
     return 0;
 }

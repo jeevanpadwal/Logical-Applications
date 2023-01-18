@@ -1,47 +1,45 @@
-//accept no chk have zero or not
 #include<stdio.h>
-#include<stdbool.h>
+#include<stdlib.h>
 
- bool ChkZero(int iNo)
+int Diff(int Brr[], int iLength)
 {
-    int iDigit=0;
-    bool bFlag=true;
-    while(iNo>0)
+    int iCnt=0,EfeqCnt=0,OfeqCnt=0;
+
+    for(iCnt=0;iCnt<iLength;iCnt++)
     {
-        iDigit=iNo%10;
-        
-        if(iDigit==0)
+        if((Brr[iCnt]%2)==0)
         {
-            bFlag=false;
+            EfeqCnt++;
         }
-       
-      iNo=iNo/10;
-        
+        else 
+        {
+           OfeqCnt++;
+        }
     }
-
-    return bFlag;
-
-    
-   
+    return EfeqCnt-OfeqCnt;
 }
 int main()
-
 {
-  int iValue=0;
-    bool bRet=false ;
-     printf("entr the number "); 
-   scanf("%d",&iValue);
+    int iSize=0,iCnt=0,iRet=0;
+    int *iptr=NULL;
 
-    bRet =ChkZero(iValue);
+    printf("enter the size of elements\n");
+    scanf("%d",&iSize);
 
-     if(bRet==true)
-   {
-      printf("number dont have zero");
-   } 
-      else 
+    iptr=(int*)malloc(sizeof(int)*iSize);
+
+    printf("enter the elements\n");
+
+    for(iCnt=0;iCnt<iSize;iCnt++)
     {
-        printf("number contain zero");
+        scanf("%d",&iptr[iCnt]);
     }
+
+    iRet=Diff(iptr,iSize);
+
+    printf("result is :%d",iRet);
+
+    free(iptr);
 
     return 0;
 }
