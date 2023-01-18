@@ -1,34 +1,43 @@
 #include<stdio.h>
 
-int FeqLessThan6(int iNo)
+void Display(int iRow,int iCol)
 {
-    int iDigit=0;
-    int iCnt=0;
+    int i=0,j=0;
 
-    while(iNo>0)
+    for(i=1;i<=iRow;i++)
     {
-        iDigit=iNo%10;
-
-        if(iDigit<=6)
+        for(j=1;j<=iCol;j++)
         {
-            iCnt++;
+             if(i==j||i==1||i==iRow||j==iCol||j==1)
+            {
+           printf("%d\t",j);
+            }
+            else if(i<j)
+            
+            {
+                printf("\t");
+
+            }
+            else if(i>j)
+            {
+                printf("\t");
+            }
+            
+            
+
         }
-        iNo=iNo/10;
+        printf("\n");
     }
-    return iCnt;
 }
 
 int main()
 {
-    int iValue=0;
-    int iRet=0;
+    int iValue1=0,iValue2=0;
 
-    printf("enter the no\n");
-    scanf("%d",&iValue);
+    printf("enter rows and column");
+    scanf("%d%d",&iValue1,&iValue2);
 
-    iRet=FeqLessThan6(iValue);
-
-    printf("frequency is less than 6 is :%d\n",iRet);
+    Display(iValue1,iValue2);
 
     return 0;
 }

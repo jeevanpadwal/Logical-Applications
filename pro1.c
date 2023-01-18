@@ -1,33 +1,36 @@
-//display digit reverse order
 #include<stdio.h>
 
-void DisplayDigit(int iNo)
+void Display(int iRow,int iCol)
 {
-    int iDigit=0;
+    int i=0,j=0;
 
-    if(iNo<=0)
+    for(i=1;i<=iRow;i++)
     {
-        iNo=-iNo;
-    }
-    
-    while(iNo>0)
-    {
-        iDigit=iNo%10;
+        for(j=iCol;j>=1;j--)
+        {
+            if(i==j)
+            {
+           printf("#\t");
+            }
+            else
+            {
+                printf("*\t");
 
-        printf("%d\n",iDigit);
+            }
 
-        iNo=iNo/10;
+        }
+        printf("\n");
     }
 }
 
 int main()
 {
-    int iValue=0;
-    
-    printf("enter number\n");
-    scanf("%d",&iValue);
+    int iValue1=0,iValue2=0;
 
-    DisplayDigit(iValue);
+    printf("enter rows and column");
+    scanf("%d%d",&iValue1,&iValue2);
+
+    Display(iValue1,iValue2);
 
     return 0;
 }

@@ -1,47 +1,41 @@
-//accept no chk have zero or not
 #include<stdio.h>
-#include<stdbool.h>
 
- bool ChkZero(int iNo)
+void Display(int iRow,int iCol)
 {
-    int iDigit=0;
-    bool bFlag=true;
-    while(iNo>0)
+    int i=0,j=0;
+
+    for(i=1;i<=iRow;i++)
     {
-        iDigit=iNo%10;
-        
-        if(iDigit==0)
+        for(j=iCol;j>=1;j--)
         {
-            bFlag=false;
+            if(i==j)
+            {
+           printf("#\t");
+            }
+            else if(i<j)
+            
+            {
+                printf("*\t");
+
+            }
+            else if(i>j)
+            {
+                printf("@\t");
+            }
+
         }
-       
-      iNo=iNo/10;
-        
+        printf("\n");
     }
-
-    return bFlag;
-
-    
-   
 }
+
 int main()
-
 {
-  int iValue=0;
-    bool bRet=false ;
-     printf("entr the number "); 
-   scanf("%d",&iValue);
+    int iValue1=0,iValue2=0;
 
-    bRet =ChkZero(iValue);
+    printf("enter rows and column");
+    scanf("%d%d",&iValue1,&iValue2);
 
-     if(bRet==true)
-   {
-      printf("number dont have zero");
-   } 
-      else 
-    {
-        printf("number contain zero");
-    }
+    Display(iValue1,iValue2);
 
     return 0;
 }
