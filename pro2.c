@@ -1,47 +1,44 @@
-//accept no chk have zero or not
 #include<stdio.h>
 #include<stdbool.h>
-
- bool ChkZero(int iNo)
+#include<stdlib.h>
+int Small(int Arr[],int iLength)
 {
-    int iDigit=0;
-    bool bFlag=true;
-    while(iNo>0)
+
+    int iCnt=0,iMin=Arr[iCnt];
+    for(iCnt=0;iCnt<iLength;iCnt++)
     {
-        iDigit=iNo%10;
-        
-        if(iDigit==0)
+        if(iMin>(Arr[iCnt]))
         {
-            bFlag=false;
+            iMin=Arr[iCnt];
         }
-       
-      iNo=iNo/10;
-        
+
     }
-
-    return bFlag;
-
-    
-   
+    return iMin;
 }
+
 int main()
-
 {
-  int iValue=0;
-    bool bRet=false ;
-     printf("entr the number "); 
-   scanf("%d",&iValue);
+ int iSize=0,iCnt=0;
+int *iptr=NULL;
+int iRet=0;
 
-    bRet =ChkZero(iValue);
+ printf("enter no of elements");
+ scanf("%d",&iSize);
 
-     if(bRet==true)
-   {
-      printf("number dont have zero");
-   } 
-      else 
-    {
-        printf("number contain zero");
-    }
+ iptr=(int*)malloc(sizeof(int)*iSize);
 
-    return 0;
+ printf("enter the elements");
+ for(iCnt=0;iCnt<iSize;iCnt++)
+ {
+     scanf("%d",&iptr[iCnt]);
+
+ }
+
+ iRet=Small(iptr,iSize);
+
+ printf("largest number is ;%d",iRet);
+
+free(iptr);
+
+return 0;
 }

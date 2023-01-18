@@ -1,33 +1,45 @@
 #include<stdio.h>
-int Feq4(int iNo)
+#include<stdbool.h>
+#include<stdlib.h>
+int Diff(int Arr[],int iLength)
 {
-    int iDigit=0;
-    int iCnt=0;
 
-    while(iNo>0)
+    int iCnt=0,iDigit=0,iBigCnt=0;
+
+    for(iCnt=0;iCnt<iLength;iCnt++)
     {
-        iDigit=iNo%10;
-
-        if(iDigit==4)
+        if(Arr[iCnt]>99&&Arr[iCnt]<1000)
         {
-            iCnt++;
+           printf("%d\n",Arr[iCnt]);
         }
-        iNo=iNo/10;
     }
-    return iCnt;
+   
+    
 }
 
 int main()
 {
-    int iValue=0;
-    int iRet=0;
+ int iSize=0,iCnt=0;
+int *iptr=NULL;
+int iRet=0;
 
-    printf("enter no\n");
-    scanf("%d",&iValue);
+ printf("enter no of elements");
+ scanf("%d",&iSize);
 
-    iRet=Feq4(iValue);
+ iptr=(int*)malloc(sizeof(int)*iSize);
 
-    printf("frequency of 4 is :%d\n",iRet);
+ printf("enter the elements");
+ for(iCnt=0;iCnt<iSize;iCnt++)
+ {
+     scanf("%d",&iptr[iCnt]);
 
-    return 0;
+ }
+
+ Diff(iptr,iSize);
+
+ 
+
+free(iptr);
+
+return 0;
 }

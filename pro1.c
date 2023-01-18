@@ -1,33 +1,44 @@
-//display digit reverse order
 #include<stdio.h>
-
-void DisplayDigit(int iNo)
+#include<stdbool.h>
+#include<stdlib.h>
+int Large(int Arr[],int iLength)
 {
-    int iDigit=0;
 
-    if(iNo<=0)
+    int iCnt=0,iMax=0;
+    for(iCnt=0;iCnt<iLength;iCnt++)
     {
-        iNo=-iNo;
-    }
-    
-    while(iNo>0)
-    {
-        iDigit=iNo%10;
+        if(iMax<(Arr[iCnt]))
+        {
+            iMax=Arr[iCnt];
+        }
 
-        printf("%d\n",iDigit);
-
-        iNo=iNo/10;
     }
+    return iMax;
 }
 
 int main()
 {
-    int iValue=0;
-    
-    printf("enter number\n");
-    scanf("%d",&iValue);
+ int iSize=0,iCnt=0;
+int *iptr=NULL;
+int iRet=0;
 
-    DisplayDigit(iValue);
+ printf("enter no of elements");
+ scanf("%d",&iSize);
 
-    return 0;
+ iptr=(int*)malloc(sizeof(int)*iSize);
+
+ printf("enter the elements");
+ for(iCnt=0;iCnt<iSize;iCnt++)
+ {
+     scanf("%d",&iptr[iCnt]);
+
+ }
+
+ iRet=Large(iptr,iSize);
+
+ printf("largest number is ;%d",iRet);
+
+free(iptr);
+
+return 0;
 }

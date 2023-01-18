@@ -1,33 +1,54 @@
 #include<stdio.h>
-int Freq2(int iNo)
+#include<stdbool.h>
+#include<stdlib.h>
+int Diff(int Arr[],int iLength)
 {
-    int iDigit=0;
-    int iCnt=0;
 
-    while(iNo>0)
+    int iCnt=0,iMax=0,iMin=Arr[iCnt],iDiff=0;
+    for(iCnt=0;iCnt<iLength;iCnt++)
     {
-        iDigit=iNo%10;
-        if(iDigit==2)
+        if(iMax<(Arr[iCnt]))
         {
-            iCnt++;
+            iMax=Arr[iCnt];
         }
-        iNo=iNo/10;
     
-        
     }
-    return iCnt;
+    for(iCnt=0;iCnt<iLength;iCnt++)
+    {
+    
+        if(iMin>Arr[iCnt])
+        {
+            iMin=Arr[iCnt];
+        }
+    }
+    
+    iDiff=iMax-iMin;
+    return iDiff;
 }
+
 int main()
 {
-    int iValue=0;
-    int iRet=0;
+ int iSize=0,iCnt=0;
+int *iptr=NULL;
+int iRet=0;
 
-    printf("enter the number\n");
-    scanf("%d",&iValue);
+ printf("enter no of elements");
+ scanf("%d",&iSize);
 
-    iRet=Freq2(iValue);
+ iptr=(int*)malloc(sizeof(int)*iSize);
 
-    printf("%d",iRet);
+ printf("enter the elements");
+ for(iCnt=0;iCnt<iSize;iCnt++)
+ {
+     scanf("%d",&iptr[iCnt]);
 
-    return 0;
+ }
+
+ iRet=Diff(iptr,iSize);
+
+ printf("differance between largest and smallest is :%d",iRet);
+
+free(iptr);
+
+return 0;
 }
