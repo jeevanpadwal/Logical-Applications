@@ -1,47 +1,85 @@
-//accept no chk have zero or not
 #include<stdio.h>
-#include<stdbool.h>
-
- bool ChkZero(int iNo)
+#include<stdlib.h>
+struct node
 {
-    int iDigit=0;
-    bool bFlag=true;
-    while(iNo>0)
+int data;
+ struct node * next;
+
+};
+typedef struct node NODE;
+typedef struct node * PNODE;
+typedef struct node ** PPNODE;
+void InsertFirst(PPNODE head,int no)
+{
+    PNODE newn = (PNODE)malloc(sizeof(NODE));
+
+    newn->next=NULL;
+    newn->data=no;
+
+    if(*head==NULL)
     {
-        iDigit=iNo%10;
-        
-        if(iDigit==0)
-        {
-            bFlag=false;
-        }
-       
-      iNo=iNo/10;
-        
+        *head=newn;
     }
-
-    return bFlag;
-
-    
-   
+    else
+    {
+        newn->next=*head;
+        *head=newn;
+    }
 }
-int main()
-
+void DisplayPalindrome(PNODE head)
 {
-  int iValue=0;
-    bool bRet=false ;
-     printf("entr the number "); 
-   scanf("%d",&iValue);
+    int iDigit=0,iRev=0,temp=0;
+ 
 
-    bRet =ChkZero(iValue);
-
-     if(bRet==true)
-   {
-      printf("number dont have zero");
-   } 
-      else 
+    while( head!= NULL)
     {
-        printf("number contain zero");
+        iRev=0;
+          temp = head->data;
+       
+        while((head->data)>0)
+        {
+            iDigit=(head->data)%10;
+            iRev=iRev*10+iDigit;
+            head->data=(head->data)/10;
+            
+        }
+        if(iRev==temp)
+        {
+            printf("%d\n",iRev);
+        }
+
+        head=head->next;
     }
+}
+void Display(PNODE head)
+{
+    while(head!=NULL)
+    {
+        printf("|%d|->",head->data);
+
+        head=head->next;
+    }
+    printf("|NULL|\n");
+}
+
+
+int main()
+{
+PNODE first = NULL;
+
+InsertFirst(&first,89);
+InsertFirst(&first,6);
+
+InsertFirst(&first,414);
+InsertFirst(&first,17);
+
+InsertFirst(&first,28);
+InsertFirst(&first,11);
+
+Display(first);
+
+DisplayPalindrome(first);
+
 
     return 0;
 }

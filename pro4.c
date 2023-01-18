@@ -1,33 +1,84 @@
 #include<stdio.h>
-int Feq4(int iNo)
+#include<stdlib.h>
+struct node
 {
-    int iDigit=0;
-    int iCnt=0;
+int data;
+ struct node * next;
 
-    while(iNo>0)
+};
+typedef struct node NODE;
+typedef struct node * PNODE;
+typedef struct node ** PPNODE;
+void InsertFirst(PPNODE head,int no)
+{
+    PNODE newn = (PNODE)malloc(sizeof(NODE));
+
+    newn->next=NULL;
+    newn->data=no;
+
+    if(*head==NULL)
     {
-        iDigit=iNo%10;
-
-        if(iDigit==4)
-        {
-            iCnt++;
-        }
-        iNo=iNo/10;
+        *head=newn;
     }
-    return iCnt;
+    else
+    {
+        newn->next=*head;
+        *head=newn;
+    }
 }
+void DisplayMin(PNODE head)
+{
+    int iDigit=0,iMin=0;
+ 
+
+    while( head!= NULL)
+    {
+         
+       iMin=head->data;
+        while((head->data)>0)
+        {
+
+            iDigit=(head->data)%10;
+            
+            if(iDigit<iMin)
+            {
+                   iMin=iDigit;
+            }
+         
+            head->data=(head->data)/10;
+            
+        }
+       printf("%d\n",iMin);
+
+        head=head->next;
+    }
+}
+void Display(PNODE head)
+{
+    while(head!=NULL)
+    {
+        printf("|%d|->",head->data);
+
+        head=head->next;
+    }
+    printf("|NULL|\n");
+}
+
 
 int main()
 {
-    int iValue=0;
-    int iRet=0;
+PNODE first = NULL;
 
-    printf("enter no\n");
-    scanf("%d",&iValue);
+InsertFirst(&first,415);
+InsertFirst(&first,532);
 
-    iRet=Feq4(iValue);
+InsertFirst(&first,250);
+InsertFirst(&first,11);
 
-    printf("frequency of 4 is :%d\n",iRet);
+Display(first);
+
+DisplayMin(first);
+
 
     return 0;
 }

@@ -1,34 +1,84 @@
 #include<stdio.h>
-
-int FeqLessThan6(int iNo)
+#include<stdlib.h>
+struct node
 {
-    int iDigit=0;
-    int iCnt=0;
+int data;
+ struct node * next;
 
-    while(iNo>0)
+};
+typedef struct node NODE;
+typedef struct node * PNODE;
+typedef struct node ** PPNODE;
+void InsertFirst(PPNODE head,int no)
+{
+    PNODE newn = (PNODE)malloc(sizeof(NODE));
+
+    newn->next=NULL;
+    newn->data=no;
+
+    if(*head==NULL)
     {
-        iDigit=iNo%10;
-
-        if(iDigit<=6)
-        {
-            iCnt++;
-        }
-        iNo=iNo/10;
+        *head=newn;
     }
-    return iCnt;
+    else
+    {
+        newn->next=*head;
+        *head=newn;
+    }
 }
+void DisplayLarge(PNODE head)
+{
+    int iDigit=0,iMax=0;
+ 
+
+    while( head!= NULL)
+    {
+         
+       
+        while((head->data)>0)
+        {
+
+            iDigit=(head->data)%10;
+            
+            if(iDigit>iMax)
+            {
+                   iMax=iDigit;
+            }
+         
+            head->data=(head->data)/10;
+            
+        }
+       printf("%d\n",iMax);
+
+        head=head->next;
+    }
+}
+void Display(PNODE head)
+{
+    while(head!=NULL)
+    {
+        printf("|%d|->",head->data);
+
+        head=head->next;
+    }
+    printf("|NULL|\n");
+}
+
 
 int main()
 {
-    int iValue=0;
-    int iRet=0;
+PNODE first = NULL;
 
-    printf("enter the no\n");
-    scanf("%d",&iValue);
+InsertFirst(&first,419);
+InsertFirst(&first,532);
 
-    iRet=FeqLessThan6(iValue);
+InsertFirst(&first,250);
+InsertFirst(&first,11);
 
-    printf("frequency is less than 6 is :%d\n",iRet);
+Display(first);
+
+DisplayLarge(first);
+
 
     return 0;
 }
